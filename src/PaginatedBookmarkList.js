@@ -1,14 +1,7 @@
 import React, { useState } from "react";
 import "./PaginatedBookmarkList.css";
 
-type Article = {
-  id: number;
-  title: string;
-  content: string;
-  bookmarked: boolean;
-};
-
-const generateDummyArticles = (count: number): Article[] =>
+const generateDummyArticles = (count) =>
   Array.from({ length: count }, (_, i) => ({
     id: i + 1,
     title: `Article ${i + 1}`,
@@ -18,14 +11,12 @@ const generateDummyArticles = (count: number): Article[] =>
 
 const ARTICLES_PER_PAGE = 5;
 
-const PaginatedBookmarkList: React.FC = () => {
-  const [articles, setArticles] = useState<Article[]>(
-    generateDummyArticles(23)
-  );
+export default function PaginatedBookmarkList() {
+  const [articles, setArticles] = useState(generateDummyArticles(23));
   const [currentPage, setCurrentPage] = useState(1);
   const [showOnlyBookmarked, setShowOnlyBookmarked] = useState(false);
 
-  const toggleBookmark = (id: number) => {
+  const toggleBookmark = (id) => {
     setArticles((prev) =>
       prev.map((article) =>
         article.id === id
@@ -46,7 +37,7 @@ const PaginatedBookmarkList: React.FC = () => {
     startIndex + ARTICLES_PER_PAGE
   );
 
-  const goToPage = (page: number) => {
+  const goToPage = (page) => {
     setCurrentPage(Math.max(1, Math.min(page, totalPages)));
   };
 
@@ -105,6 +96,4 @@ const PaginatedBookmarkList: React.FC = () => {
       </div>
     </div>
   );
-};
-
-export default PaginatedBookmarkList;
+}

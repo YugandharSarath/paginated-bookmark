@@ -1,4 +1,4 @@
-import PaginatedBookmarkList from "./components/PaginatedBookmarkList";
+import PaginatedBookmarkList from "./PaginatedBookmarkList";
 
 function App() {
   return <PaginatedBookmarkList />;
